@@ -15,11 +15,11 @@ class MainActivity : AppCompatActivity() {
         val imgView: ImageView = findViewById<ImageView>(R.id.imgView)
         val edtURL:EditText = findViewById<EditText>(R.id.edtURL)
         val btnDownload = findViewById<Button>(R.id.btnDownload)
-        val download = DownloadImageTask()
         val thread = Thread.currentThread()
         Log.i("MainActivity: ","Main Activity is running on thread ${thread.id}")
         btnDownload.setOnClickListener {
             if(edtURL.text.isNotBlank()){
+                val download = DownloadImageTask()
                 imgView.tag = edtURL.text.toString()
                 download.execute(imgView)
             }
