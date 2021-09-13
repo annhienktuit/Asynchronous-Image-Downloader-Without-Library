@@ -2,6 +2,7 @@ package com.example.imagedownloader
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
@@ -15,6 +16,8 @@ class MainActivity : AppCompatActivity() {
         val edtURL:EditText = findViewById<EditText>(R.id.edtURL)
         val btnDownload = findViewById<Button>(R.id.btnDownload)
         val download = DownloadImageTask()
+        val thread = Thread.currentThread()
+        Log.i("MainActivity: ","Main Activity is running on thread ${thread.id}")
         btnDownload.setOnClickListener {
             if(edtURL.text.isNotBlank()){
                 imgView.tag = edtURL.text.toString()

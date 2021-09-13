@@ -18,6 +18,8 @@ class DownloadImageTask(): AsyncTask<ImageView, Void, Bitmap>() {
     var imgView: ImageView? = null
     override fun doInBackground(vararg imageView: ImageView): Bitmap? {
         try {
+            val thread = Thread.currentThread()
+            Log.i("imagedownload: ","start at thread ${thread.id}")
             this.imgView = imageView[0]
             return getBitmapFromURL(imgView!!.tag.toString())
         }
@@ -25,11 +27,6 @@ class DownloadImageTask(): AsyncTask<ImageView, Void, Bitmap>() {
             e.printStackTrace()
         }
         return null
-    }
-
-    override fun onPreExecute() {
-        super.onPreExecute()
-        Log.i("imagedownload: ","start")
     }
 
     override fun onPostExecute(result: Bitmap?) {
