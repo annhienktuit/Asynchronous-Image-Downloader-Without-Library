@@ -2,15 +2,28 @@ package com.example.imagedownloader
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val imgView: ImageView = findViewById<ImageView>(R.id.imgView)
-        imgView.tag = "https://i.imgur.com/DjLKmgA.jpeg"
+        val edtURL:EditText = findViewById<EditText>(R.id.edtURL)
+        val btnDownload = findViewById<Button>(R.id.btnDownload)
         val download = DownloadImageTask()
-        download.execute(imgView)
+        btnDownload.setOnClickListener {
+            if(edtURL.text.isNotBlank()){
+                imgView.tag = edtURL.text.toString()
+                download.execute(imgView)
+            }
+            else {
+                Toast.makeText(this, "Please enter URL!",Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
 }
