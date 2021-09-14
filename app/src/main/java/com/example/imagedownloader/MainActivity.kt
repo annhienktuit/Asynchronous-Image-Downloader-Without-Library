@@ -1,5 +1,6 @@
 package com.example.imagedownloader
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         val imgView: ImageView = findViewById<ImageView>(R.id.imgView)
         val edtURL:EditText = findViewById<EditText>(R.id.edtURL)
         val btnDownload = findViewById<Button>(R.id.btnDownload)
+        val btnLottie = findViewById<Button>(R.id.btnLottie)
         val thread = Thread.currentThread()
         Log.i("MainActivity: ","Main Activity is running on thread ${thread.id}")
         btnDownload.setOnClickListener {
@@ -26,6 +28,10 @@ class MainActivity : AppCompatActivity() {
             else {
                 Toast.makeText(this, "Please enter URL!",Toast.LENGTH_LONG).show()
             }
+        }
+        btnLottie.setOnClickListener {
+            val intent = Intent(this, LottieActivity::class.java)
+            startActivity(intent)
         }
 
     }
